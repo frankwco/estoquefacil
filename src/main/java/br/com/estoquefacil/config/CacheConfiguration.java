@@ -44,6 +44,8 @@ public class CacheConfiguration {
             createCache(cm, br.com.estoquefacil.domain.User.class.getName() + ".authorities");
             createCache(cm, br.com.estoquefacil.domain.PersistentToken.class.getName());
             createCache(cm, br.com.estoquefacil.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, br.com.estoquefacil.domain.Igreja.class.getName());
+            createCache(cm, br.com.estoquefacil.domain.Produto.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

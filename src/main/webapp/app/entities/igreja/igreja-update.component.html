@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-igreja-heading" jhiTranslate="estoquefacilApp.igreja.home.createOrEditLabel">Create or edit a Igreja</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.igreja.nomeLocalidade" for="field_nomeLocalidade">Nome Localidade</label>
+                    <input type="text" class="form-control" name="nomeLocalidade" id="field_nomeLocalidade"
+                           formControlName="nomeLocalidade"/>
+                    <div *ngIf="editForm.get('nomeLocalidade').invalid && (editForm.get('nomeLocalidade').dirty || editForm.get('nomeLocalidade').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomeLocalidade').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.igreja.numeroLocalidade" for="field_numeroLocalidade">Numero Localidade</label>
+                    <input type="text" class="form-control" name="numeroLocalidade" id="field_numeroLocalidade"
+                           formControlName="numeroLocalidade"/>
+                    <div *ngIf="editForm.get('numeroLocalidade').invalid && (editForm.get('numeroLocalidade').dirty || editForm.get('numeroLocalidade').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numeroLocalidade').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

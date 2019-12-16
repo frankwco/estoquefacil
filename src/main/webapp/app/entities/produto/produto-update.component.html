@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-produto-heading" jhiTranslate="estoquefacilApp.produto.home.createOrEditLabel">Create or edit a Produto</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.produto.descricao" for="field_descricao">Descricao</label>
+                    <input type="text" class="form-control" name="descricao" id="field_descricao"
+                           formControlName="descricao"/>
+                    <div *ngIf="editForm.get('descricao').invalid && (editForm.get('descricao').dirty || editForm.get('descricao').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descricao').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.produto.codigo" for="field_codigo">Codigo</label>
+                    <input type="text" class="form-control" name="codigo" id="field_codigo"
+                           formControlName="codigo"/>
+                    <div *ngIf="editForm.get('codigo').invalid && (editForm.get('codigo').dirty || editForm.get('codigo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codigo').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.produto.valor" for="field_valor">Valor</label>
+                    <input type="number" class="form-control" name="valor" id="field_valor"
+                           formControlName="valor"/>
+                    <div *ngIf="editForm.get('valor').invalid && (editForm.get('valor').dirty || editForm.get('valor').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('valor').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('valor')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.produto.quantidadeEstoque" for="field_quantidadeEstoque">Quantidade Estoque</label>
+                    <input type="number" class="form-control" name="quantidadeEstoque" id="field_quantidadeEstoque"
+                           formControlName="quantidadeEstoque"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.produto.imagem" for="field_imagem">Imagem</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imagemContentType').value + ';base64,' + editForm.get('imagem').value" style="max-height: 100px;" *ngIf="editForm.get('imagem').value" alt="produto image"/>
+                        <div *ngIf="editForm.get('imagem').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('imagemContentType').value}}, {{byteSize(editForm.get('imagem').value)}}</span>
+                            <button type="button" (click)="clearInputImage('imagem', 'imagemContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_imagem" (change)="setFileData($event, 'imagem', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="imagem" id="field_imagem"
+                           formControlName="imagem"/>
+                    <input type="hidden" class="form-control" name="imagemContentType" id="field_imagemContentType"
+                           formControlName="imagemContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

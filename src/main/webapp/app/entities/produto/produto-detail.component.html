@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="produto">
+            <h2><span jhiTranslate="estoquefacilApp.produto.detail.title">Produto</span> {{produto.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="estoquefacilApp.produto.descricao">Descricao</span></dt>
+                <dd>
+                    <span>{{produto.descricao}}</span>
+                </dd>
+                <dt><span jhiTranslate="estoquefacilApp.produto.codigo">Codigo</span></dt>
+                <dd>
+                    <span>{{produto.codigo}}</span>
+                </dd>
+                <dt><span jhiTranslate="estoquefacilApp.produto.valor">Valor</span></dt>
+                <dd>
+                    <span>{{produto.valor}}</span>
+                </dd>
+                <dt><span jhiTranslate="estoquefacilApp.produto.quantidadeEstoque">Quantidade Estoque</span></dt>
+                <dd>
+                    <span>{{produto.quantidadeEstoque}}</span>
+                </dd>
+                <dt><span jhiTranslate="estoquefacilApp.produto.imagem">Imagem</span></dt>
+                <dd>
+                    <div *ngIf="produto.imagem">
+                        <a (click)="openFile(produto.imagemContentType, produto.imagem)">
+                            <img [src]="'data:' + produto.imagemContentType + ';base64,' + produto.imagem" style="max-width: 100%;" alt="produto image"/>
+                        </a>
+                        {{produto.imagemContentType}}, {{byteSize(produto.imagem)}}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/produto', produto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

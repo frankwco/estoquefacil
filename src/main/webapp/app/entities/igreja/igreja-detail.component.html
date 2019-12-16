@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="igreja">
+            <h2><span jhiTranslate="estoquefacilApp.igreja.detail.title">Igreja</span> {{igreja.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="estoquefacilApp.igreja.nomeLocalidade">Nome Localidade</span></dt>
+                <dd>
+                    <span>{{igreja.nomeLocalidade}}</span>
+                </dd>
+                <dt><span jhiTranslate="estoquefacilApp.igreja.numeroLocalidade">Numero Localidade</span></dt>
+                <dd>
+                    <span>{{igreja.numeroLocalidade}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/igreja', igreja.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+{
+  "estoquefacilApp": {
+    "igreja": {
+      "home": {
+        "title": "Igrejas",
+        "createLabel": "Criar novo Igreja",
+        "createOrEditLabel": "Criar ou editar Igreja",
+        "notFound": "Nenhum Igreja encontrado"
+      },
+      "created": "Um novo Igreja foi criado com o identificador {{ param }}",
+      "updated": "Um Igreja foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Igreja foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Igreja {{ id }}?"
+      },
+      "detail": {
+        "title": "Igreja"
+      },
+      "nomeLocalidade": "Nome Localidade",
+      "numeroLocalidade": "Numero Localidade"
+    }
+  }
+}
