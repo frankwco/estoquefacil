@@ -1,0 +1,25 @@
+{
+  "estoquefacilApp": {
+    "itensPedido": {
+      "home": {
+        "title": "Itens Pedidos",
+        "createLabel": "Criar novo Itens Pedido",
+        "createOrEditLabel": "Criar ou editar Itens Pedido",
+        "notFound": "Nenhum Itens Pedido encontrado"
+      },
+      "created": "Um novo Itens Pedido foi criado com o identificador {{ param }}",
+      "updated": "Um Itens Pedido foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Itens Pedido foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Itens Pedido {{ id }}?"
+      },
+      "detail": {
+        "title": "Itens Pedido"
+      },
+      "quantidadeProduto": "Quantidade Produto",
+      "valorProduto": "Valor Produto",
+      "pedido": "Pedido",
+      "produto": "Produto"
+    }
+  }
+}

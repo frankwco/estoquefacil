@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-itens-pedido-heading" jhiTranslate="estoquefacilApp.itensPedido.home.createOrEditLabel">Create or edit a Itens Pedido</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.itensPedido.quantidadeProduto" for="field_quantidadeProduto">Quantidade Produto</label>
+                    <input type="number" class="form-control" name="quantidadeProduto" id="field_quantidadeProduto"
+                           formControlName="quantidadeProduto"/>
+                    <div *ngIf="editForm.get('quantidadeProduto').invalid && (editForm.get('quantidadeProduto').dirty || editForm.get('quantidadeProduto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('quantidadeProduto').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('quantidadeProduto')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.itensPedido.valorProduto" for="field_valorProduto">Valor Produto</label>
+                    <input type="number" class="form-control" name="valorProduto" id="field_valorProduto"
+                           formControlName="valorProduto"/>
+                    <div *ngIf="editForm.get('valorProduto').invalid && (editForm.get('valorProduto').dirty || editForm.get('valorProduto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('valorProduto').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('valorProduto')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.itensPedido.pedido" for="field_pedido">Pedido</label>
+                    <select class="form-control" id="field_pedido" name="pedido" formControlName="pedido">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="pedidoOption.id === editForm.get('pedido').value?.id ? editForm.get('pedido').value : pedidoOption" *ngFor="let pedidoOption of pedidos; trackBy: trackPedidoById">{{pedidoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="estoquefacilApp.itensPedido.produto" for="field_produto">Produto</label>
+                    <select class="form-control" id="field_produto" name="produto" formControlName="produto">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="produtoOption.id === editForm.get('produto').value?.id ? editForm.get('produto').value : produtoOption" *ngFor="let produtoOption of produtos; trackBy: trackProdutoById">{{produtoOption.descricao}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
