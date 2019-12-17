@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="pedido">
+            <h2><span jhiTranslate="estoquefacilApp.pedido.detail.title">Pedido</span> {{pedido.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="estoquefacilApp.pedido.observacao">Observacao</span></dt>
+                <dd>
+                    <span>{{pedido.observacao}}</span>
+                </dd>
+                <dt><span jhiTranslate="estoquefacilApp.pedido.igreja">Igreja</span></dt>
+                <dd>
+                    <div *ngIf="pedido.igreja">
+                        <a [routerLink]="['/igreja', pedido.igreja?.id, 'view']">{{pedido.igreja?.nomeLocalidade}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/pedido', pedido.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
